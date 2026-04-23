@@ -1,0 +1,53 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE - IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# IDE - Eclipse
+.settings/
+.classpath
+.project
+bin/
+
+# IDE - VS Code
+.vscode/
+
+# Spring Boot
+*.jar
+*.war
+*.ear
+*.class
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Environment & Secrets
+.env
+.env.*
+application-local.properties
+application-local.yml
+**/src/main/resources/application-secret*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test reports (optional — remove if you want to keep them)
+surefire-reports/
+test-output/
+allure-results/
+allure-report/ 

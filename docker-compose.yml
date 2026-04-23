@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: dashboard-postgres
+    environment:
+      POSTGRES_DB: test_dashboard_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - dashboard_postgres_data:/var/lib/postgresql/data
+    networks:
+      - dashboard-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: dashboard-redis
+    ports:
+      - "6380:6379"
+    networks:
+      - dashboard-network
+
+  app:
+    build: .
+    container_name: dashboard-app
+    ports:
+      - "8081:8081"
+    environment:
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - dashboard-network
+
+volumes:
+  dashboard_postgres_data:
+
+networks:
+  dashboard-network:
+    driver: bridge
